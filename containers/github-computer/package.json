@@ -1,0 +1,9 @@
+{
+  "license": "MIT",
+  "main": "index.js",
+  "name": "github-computer",
+  "scripts": {
+    "build": "docker build -t github-computer/github-computer:latest ."
+  },
+  "version": "1.0.0"
+}
