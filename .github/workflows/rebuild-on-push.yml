@@ -19,7 +19,7 @@ jobs:
         uses: whoan/docker-build-with-cache-action@master
         with:
           build_extra_args: --build-arg=DESKTOP_ENVIRONMENT_USER=${{ env.REPOSITORY_OWNER }}
-          dockerfile: docker/Dockerfile
+          dockerfile: Dockerfile
           image_name: desktop-environment
           push_git_tag: true
           registry: docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}
