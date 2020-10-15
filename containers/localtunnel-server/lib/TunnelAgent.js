@@ -32,7 +32,7 @@ class TunnelAgent extends Agent {
         this.maxTcpSockets = options.maxTcpSockets || DEFAULT_MAX_SOCKETS;
 
         // new tcp server to service requests for this client
-        this.server = net.createServer();
+        this.server = net.createServer({ });
 
         // flag to avoid double starts
         this.started = false;
@@ -63,7 +63,7 @@ class TunnelAgent extends Agent {
         });
 
         return new Promise((resolve) => {
-            server.listen(() => {
+            server.listen(36000, () => {
                 const port = server.address().port;
                 this.debug('tcp server listening on port: %d', port);
 

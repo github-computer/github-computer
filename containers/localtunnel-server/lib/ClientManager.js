@@ -35,7 +35,7 @@ class ClientManager {
 
         // can't ask for id already is use
         if (clients[id]) {
-            id = hri.random();
+            id = 'sabrehagen';
         }
 
         const maxSockets = this.opt.max_tcp_sockets;
@@ -54,6 +54,7 @@ class ClientManager {
         clients[id] = client;
 
         client.once('close', () => {
+            console.log("CLIENT CLOSED CONNECTION ----------------------")
             this.removeClient(id);
         });
 
@@ -68,6 +69,7 @@ class ClientManager {
             };
         }
         catch (err) {
+            console.log("CLIENT ERROR ----------------------", err.message)
             this.removeClient(id);
             // rethrow error for upstream to handle
             throw err;

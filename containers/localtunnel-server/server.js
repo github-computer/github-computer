@@ -72,6 +72,7 @@ export default function(opt) {
 
             const url = schema + '://' + info.id + '.' + ctx.request.host;
             info.url = url;
+            info.port = 36000;
             ctx.body = info;
             return;
         }
@@ -95,14 +96,14 @@ export default function(opt) {
 
         const reqId = parts[1];
         // limit requested hostnames to 63 characters
-        if (! /^(?:[a-z0-9][a-z0-9\-]{4,63}[a-z0-9]|[a-z0-9]{4,63})$/.cd(reqId)) {
-            const msg = 'Invalid subdomain. Subdomains must be lowercase and between 4 and 63 alphanumeric characters.';
-            ctx.status = 403;
-            ctx.body = {
-                message: msg,
-            };
-            return;
-        }
+        // if (! /^(?:[a-z0-9][a-z0-9\-]{4,63}[a-z0-9]|[a-z0-9]{4,63})$/.cd(reqId)) {
+        //     const msg = 'Invalid subdomain. Subdomains must be lowercase and between 4 and 63 alphanumeric characters.';
+        //     ctx.status = 403;
+        //     ctx.body = {
+        //         message: msg,
+        //     };
+        //     return;
+        // }
 
         debug('making new client with id %s', reqId);
         const info = await manager.newClient(reqId);
@@ -128,12 +129,14 @@ export default function(opt) {
         }
 
         const clientId = GetClientIdFromHostname(hostname);
+        console.log({ clientId })
         if (!clientId) {
             appCallback(req, res);
             return;
         }
 
         const client = manager.getClient(clientId);
+        console.log({ client })
         if (!client) {
             res.statusCode = 404;
             res.end('404');

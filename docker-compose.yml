@@ -8,14 +8,16 @@ services:
       - --api
       - --entrypoints=Name:http Address::80 Redirect.EntryPoint:https
       - --entrypoints=Name:https Address::443 TLS
+      - --entrypoints=Name:tcp Address::36000
       - --defaultentrypoints=http,https
       - --acme
       - --acme.email=jackson@cloud-computer.dev
-      - --acme.storage=/var/run/traefik/acme.json
+      - --acme.storage=/acme.json
       - --acme.entryPoint=https
       - --acme.onHostRule=true
       - --acme.httpChallenge.entryPoint=http
       - --docker
+      - --docker.domain=github-computer.app
       - --docker.endpoint=unix:///var/run/docker.sock
       - --docker.watch=true
       - --docker.exposedByDefault=false
@@ -23,21 +25,49 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 36000:36000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:traefik.github-computer.app
+      - traefik.port=8080
 
   localtunnel-server:
-    image: github-computer/localtunnel-server:latest
+    build:
+      context: ./containers/localtunnel-server
     restart: always
+    environment:
+      DEBUG: '*'
     labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:github-computer.app
-      - traefik.port=8080
+      - traefik.dispatch.backend=localtunnel-server
+      - traefik.dispatch.frontend.rule=Host:github-computer.app
+      - traefik.dispatch.port=8080
+      - traefik.tcp.backend=localtunnel-server
+      - traefik.tcp.frontend.rule=Host:github-computer.app
+      - traefik.tcp.port=36000
+
+  port-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DEBUG: '*'
+    labels:
+      - traefik.enable=true
+
+      - traefik.p1.backend=port-test
+      - traefik.p1.frontend.rule=Host:p1.github-computer.app
+      - traefik.p1.port=20000
+
+      - traefik.p2.backend=port-test
+      - traefik.p2.frontend.rule=Host:p2.github-computer.app
+      - traefik.p2.port=30000   
 
   github-computer:
+    environment:
+      DEBUG: '*'
     image: github-computer/github-computer:latest
     restart: always
-    labels:
-      - traefik.enable=true
-      - traefik.frontend.rule=Host:$GITHUB_USERNAME.github-computer.app
-      - traefik.port=8080
