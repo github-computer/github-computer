@@ -6,4 +6,4 @@ jobs:
     container: sabrehagen/desktop-environment:latest
     steps:
       - name: Start Desktop Environment
-        run: ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
+        run: ~/.yarn/bin/ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
