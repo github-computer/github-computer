@@ -34,6 +34,7 @@ class ClientManager {
         const stats = this.stats;
 
         // can't ask for id already is use
+        debug.log('setting id to sabrehagen');
         if (clients[id]) {
             id = 'sabrehagen';
         }
@@ -53,10 +54,10 @@ class ClientManager {
         // avoiding races with other clients requesting same id
         clients[id] = client;
 
-        client.once('close', () => {
-            console.log("CLIENT CLOSED CONNECTION ----------------------")
-            this.removeClient(id);
-        });
+        // client.once('close', () => {
+        //     console.log("CLIENT CLOSED CONNECTION ----------------------")
+        //     this.removeClient(id);
+        // });
 
         // try/catch used here to remove client id
         try {
