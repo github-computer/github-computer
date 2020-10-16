@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run desktop environment tests
-        run: ./docker/scripts/test.sh
+        run: ./test.sh
         env:
           DESKTOP_ENVIRONMENT_REGISTRY: docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}
           DESKTOP_ENVIRONMENT_CONTAINER_TAG: ${{ github.ref }}
