@@ -1,0 +1,9 @@
+name: Provision Github Cloud Desktop
+on: [workflow_dispatch]
+jobs:
+  github-computer:
+    runs-on: ubuntu-latest
+    container: sabrehagen/desktop-environment:latest
+    steps:
+      - name: Start Desktop Environment
+        run: ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
