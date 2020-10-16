@@ -12,5 +12,4 @@ docker run \
   --interactive \
   --name $TEST_CONTAINER_NAME \
   --rm \
-  --tty \
   docker.pkg.github.com/$GITHUB_REPOSITORY/desktop-environment:$DESKTOP_ENVIRONMENT_CONTAINER_TAG
