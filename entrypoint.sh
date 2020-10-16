@@ -5,4 +5,4 @@
 ~/.config/scripts/vnc.sh
 
 # start ngrok tunnel
-ngrok http 80
+~/.yarn/bin/ngrok http 80
