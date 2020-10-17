@@ -3,7 +3,7 @@ on: [workflow_dispatch]
 jobs:
   github-computer:
     runs-on: ubuntu-latest
-    container: ghcr.io/sabrehagen/desktop-environment/desktop-environment:latest
+    container: ghcr.io/sabrehagen/desktop-environment:latest
     steps:
       - name: Start Desktop Environment
         run: /home/sabrehagen/.yarn/bin/ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
