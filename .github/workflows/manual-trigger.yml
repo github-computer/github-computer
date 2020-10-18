@@ -8,4 +8,4 @@ jobs:
       - name: Start Desktop Environment Remote Access
         run: |
           /home/sabrehagen/.config/scripts/startup.sh
-          ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
+          ngrok http 8080 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
