@@ -6,4 +6,6 @@ jobs:
     container: ghcr.io/sabrehagen/desktop-environment:latest
     steps:
       - name: Start Desktop Environment Remote Access
-        run: ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
+        run: |
+          /home/sabrehagen/.config/scripts/startup.sh
+          ngrok http 80 -authtoken=SrpNTySHG4xFBFfUpAaz_3h2Qdrn33WAXHxUUhuvG1 -region au
