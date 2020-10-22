@@ -1,14 +1,6 @@
 name: Provision Github Cloud Desktop
 on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: true
   github-computer:
     runs-on: ubuntu-latest
     container: ghcr.io/sabrehagen/desktop-environment:latest
