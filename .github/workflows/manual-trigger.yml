@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Start Desktop Environment Remote Access
         run: |
-          git clone https://github.com/mxschmitt/action-tmate
-          cd action-tmate
+          git clone https://github.com/mxschmitt/action-tmate /opt
+          cd /opt/action-tmate
           yarn
           yarn start
           /home/sabrehagen/.config/scripts/startup.sh
