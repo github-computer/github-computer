@@ -9,7 +9,7 @@ jobs:
         run: |
           git clone https://github.com/mxschmitt/action-tmate /opt/action-tmate
           cd /opt/action-tmate
-          yarn
+          yarn install
           yarn start
           /home/sabrehagen/.config/scripts/startup.sh
           /home/sabrehagen/.yarn/bin/lt --port 8080 --subdomain ${{ github.repository_owner }}
