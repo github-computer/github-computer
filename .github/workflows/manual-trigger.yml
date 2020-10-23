@@ -9,6 +9,8 @@ jobs:
         run: |
           echo hello
           git clone https://github.com/bonegames/Import2Require-js /opt/import2require-js
+          cd /opt/import2require-js
+          ls
           git clone https://github.com/mxschmitt/action-tmate /opt/action-tmate
           ./opt/import2require-js/Import2Require.sh /opt/action-tmate
           cd /opt/action-tmate
