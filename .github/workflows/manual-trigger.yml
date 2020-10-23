@@ -10,7 +10,7 @@ jobs:
           git clone https://github.com/bonegames/Import2Require-js /opt/import2require-js
           git clone https://github.com/mxschmitt/action-tmate /opt/action-tmate
           cd /opt/import2require-js
-          .Import2Require.sh /opt/action-tmate
+          ./Import2Require.sh /opt/action-tmate
           cd /opt/action-tmate
           yarn install
           yarn start
