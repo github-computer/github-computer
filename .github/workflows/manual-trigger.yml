@@ -1,5 +1,5 @@
 name: Provision Github Cloud Desktop
-on: [push]
+on: [workflow_dispatch]
 jobs:
   github-computer:
     runs-on: ubuntu-latest
