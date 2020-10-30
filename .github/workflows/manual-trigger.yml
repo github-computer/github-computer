@@ -12,4 +12,4 @@ jobs:
           pwd
           tmux start-server
           /home/sabrehagen/.config/scripts/startup.sh
-          /home/sabrehagen/.yarn/bin/lt --port 8080 --subdomain ${{ github.repository_owner }}
+          /home/sabrehagen/.yarn/bin/lt --port 8080
